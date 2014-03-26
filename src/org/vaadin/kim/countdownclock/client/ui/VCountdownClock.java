@@ -91,8 +91,7 @@ public class VCountdownClock extends Widget {
 				if (formatStrings.size() <= 1) {
 					formatPrefix = before;
 				} else {
-					formatStrings.get(formatStrings.size() - 2).setPostfix(
-							before);
+					formatStrings.get(formatStrings.size() - 2).setPostfix(before);
 				}
 
 				format = format.substring(removeChars);
@@ -100,8 +99,7 @@ public class VCountdownClock extends Widget {
 				if (formatStrings.size() < 1) {
 					formatPrefix = format;
 				} else {
-					formatStrings.get(formatStrings.size() - 1).setPostfix(
-							format);
+					formatStrings.get(formatStrings.size() - 1).setPostfix(format);
 				}
 				format = "";
 			}
@@ -153,7 +151,7 @@ public class VCountdownClock extends Widget {
 
 	protected class TimeString {
 
-		protected String postfix = null;
+		protected String postfix = "";
 
 		protected TimeType type = null;
 
@@ -205,7 +203,11 @@ public class VCountdownClock extends Widget {
 				if (formatsPresent.contains(TimeType.MINUTES)) {
 					milliseconds -= getMinutes(milliseconds) * aMinute;
 				}
-				return getSeconds(milliseconds) + postfix;
+				String seconds = String.valueOf(getSeconds(milliseconds));
+				while(seconds.length() < 2){
+					seconds = '0' + seconds;
+				}
+				return seconds + postfix;
 			} else if (type.equals(TimeType.TENTH_OF_A_SECONDS)) {
 				// Check if a day exists in the format, in that case remove all
 				// full days from the time
