@@ -180,7 +180,11 @@ public class VCountdownClock extends Widget {
 				if (formatsPresent.contains(TimeType.DAYS)) {
 					milliseconds -= getDays(milliseconds) * oneDay;
 				}
-				return getHours(milliseconds) + postfix;
+				String hours = String.valueOf(getHours(milliseconds));
+				while(hours.length() < 2){
+					hours = '0' + hours;
+				}
+				return hours + postfix;
 			} else if (type.equals(TimeType.MINUTES)) {
 				// Check if a day exists in the format, in that case remove all
 				// full days from the time
@@ -190,7 +194,11 @@ public class VCountdownClock extends Widget {
 				if (formatsPresent.contains(TimeType.HOURS)) {
 					milliseconds -= getHours(milliseconds) * anHour;
 				}
-				return getMinutes(milliseconds) + postfix;
+				String minutes = String.valueOf(getMinutes(milliseconds));
+				while(minutes.length() < 2){
+					minutes = '0' + minutes;
+				}
+				return minutes + postfix;
 			} else if (type.equals(TimeType.SECONDS)) {
 				// Check if a day exists in the format, in that case remove all
 				// full days from the time
